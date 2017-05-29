@@ -1,0 +1,24 @@
+{% load static %}
+<div class="box-widget {{ widget.classes }}">
+  {% if widget.name %}<h2 class="box-widget-name">{{ widget.name }}</h2>{% endif %}
+  <div class="box-widget-content" id="{{ widget.html_id }}"></div>
+  {% with chart_url='admin:'|add:widget.url_name %}
+    <script>
+      $(function () {
+        var dataset = {{ widget.content|safe }};
+        var chart = $('#{{ widget.html_id }}').highcharts(dataset);
+        setInterval(function() {
+          $.getJSON("{% url chart_url %}", function(refreshed_data) {
+            var chart = $('#{{ widget.html_id }}').highcharts();
+            var shift = false;
+            if (chart.series[0].points.length >= {{ widget.max_points }}) {
+              shift = true;
+            }
+            chart.series[0].addPoint(refreshed_data, false, shift);
+            chart.redraw();
+          });
+        }, {{ widget.time_interval }});
+      });
+    </script>
+  {% endwith %}
+</div>

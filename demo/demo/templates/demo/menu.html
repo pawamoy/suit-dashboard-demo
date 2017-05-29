@@ -1,0 +1,8 @@
+The list of urls:
+<ul>
+  {% for url in box.context.urls %}
+    {% with u='admin:'|add:url.name %}
+      <li><a href="{% url u %}">{{ url.name }}</a>
+    {% endwith %}
+  {% endfor %}
+</ul>

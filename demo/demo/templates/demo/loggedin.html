@@ -1,0 +1,5 @@
+<ul>
+  {% for member in box.context.logged_in %}
+    <li><a href="/admin/auth/user/{{ member.pk }}/">{{ member.username }}</a></li>
+  {% endfor %}
+</ul>
