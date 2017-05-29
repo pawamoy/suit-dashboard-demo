@@ -10,3 +10,8 @@ cd suit-dashboard-demo
 ^C (Ctrl-c)
 ./run.sh [with-suit]  # any non-empty arg will do
 ```
+
+Connect to the admin interface with your system username and password `admin_password`.
+
+Don't hesitate to send me Pull Requests to share your boxes and widgets,
+I will add them into the demo pages!
